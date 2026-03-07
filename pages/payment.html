@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Instagram Premium</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-card">
+            <!-- Header -->
+            <div class="header">
+                <i class="fas fa-arrow-left back-btn" onclick="goBack()"></i>
+                <h2>Complete Payment</h2>
+            </div>
+            
+            <!-- Service Info -->
+            <div class="service-info" id="serviceInfo">
+                <p><span class="info-label">Service:</span> <span id="serviceName">Loading...</span></p>
+                <p><span class="info-label">Username:</span> <span id="displayUsername">@loading</span></p>
+            </div>
+            
+            <!-- Amount Box -->
+            <div class="amount-box">
+                <div class="trial-amount">
+                    <span class="label">Instant (Today)</span>
+                    <span class="value" id="trialAmount">₹5</span>
+                </div>
+                <div class="main-amount">
+                    <span class="label">Auto-debit (24h later)</span>
+                    <span class="value" id="mainAmount">₹499</span>
+                </div>
+            </div>
+            
+            <!-- Timer (Hidden by default) -->
+            <div class="timer-box" id="timerBox" style="display: none;">
+                <div class="timer-header">
+                    <i class="fas fa-clock"></i>
+                    <span>⏳ Waiting for payment...</span>
+                </div>
+                <div class="timer" id="timer">05:00</div>
+                <div class="timer-note">Complete payment in your UPI app</div>
+            </div>
+            
+            <!-- Error Message -->
+            <div class="error-box" id="errorBox" style="display: none;">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorMessage">Something went wrong</span>
+            </div>
+            
+            <!-- Success Message -->
+            <div class="success-box" id="successBox" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <span id="successMessage">Request sent successfully!</span>
+            </div>
+            
+            <!-- UPI ID Section -->
+            <div class="payment-section active" id="upiSection">
+                <div class="input-group">
+                    <label>Enter your UPI ID</label>
+                    <input type="text" id="upiId" placeholder="e.g., username@okhdfcbank" class="upi-input">
+                    <div class="format-hint">
+                        <i class="fas fa-info-circle"></i>
+                        Supported: @okhdfcbank, @ybl, @paytm, @okaxis
+                    </div>
+                </div>
+                
+                <!-- UPI Apps Icons -->
+                <div class="apps-grid">
+                    <div class="app-icon"><i class="fab fa-google-pay"></i> GPay</div>
+                    <div class="app-icon"><i class="fas fa-phone-alt"></i> PhonePe</div>
+                    <div class="app-icon"><i class="fab fa-paytm"></i> Paytm</div>
+                    <div class="app-icon"><i class="fas fa-university"></i> BHIM</div>
+                </div>
+                
+                <button class="pay-btn" onclick="sendUPIRequest()" id="sendBtn">
+                    Send Request for ₹5
+                </button>
+            </div>
+            
+            <!-- App Guide Section (Shows after request) -->
+            <div class="app-guide" id="appGuideSection" style="display: none;">
+                <div class="guide-content">
+                    <i class="fas fa-hand-pointer"></i>
+                    <h3>Open your UPI app now</h3>
+                    <p>Click on the notification or check "Payment Requests"</p>
+                    
+                    <div class="guide-steps">
+                        <div class="step">
+                            <span class="step-num">1</span>
+                            <span>Open GPay/PhonePe/Paytm</span>
+                        </div>
+                        <div class="step">
+                            <span class="step-num">2</span>
+                            <span>Look for payment request from "InstaPremium"</span>
+                        </div>
+                        <div class="step">
+                            <span class="step-num">3</span>
+                            <span>Enter UPI PIN to complete ₹5 payment</span>
+                        </div>
+                    </div>
+                    
+                    <div class="apps-grid">
+                        <div class="app-icon"><i class="fab fa-google-pay"></i> GPay</div>
+                        <div class="app-icon"><i class="fas fa-phone-alt"></i> PhonePe</div>
+                        <div class="app-icon"><i class="fab fa-paytm"></i> Paytm</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cancel Button -->
+            <button class="cancel-btn" onclick="cancelPayment()" id="cancelBtn" style="display: none;">
+                Cancel Request
+            </button>
+            
+            <!-- Retry Button -->
+            <button class="retry-btn" onclick="retryPayment()" id="retryBtn" style="display: none;">
+                Try Again
+            </button>
+        </div>
+    </div>
+    
+    <!-- Razorpay Config -->
+    <script src="razorpay-config.js"></script>
+    
+    <!-- Payment JS -->
+    <script src="payment.js"></script>
+</body>
+</html>

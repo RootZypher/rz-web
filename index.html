@@ -3,114 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROOTZYPHER</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome Icons -->
+    <title>Instagram Premium - Home</title>
+
+    <!-- Font Awesome 6 (Icons ke liye) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header - सिर्फ LOGIN -->
-    <header class="header">
-        <div class="logo">RZ</div>
-        <button class="login-btn" id="loginBtn">LOGIN</button>
+    <!-- Header with Instagram Logo -->
+    <header>
+        <div class="insta-logo">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+            <button class="login-btn" id="loginBtn">Login</button>
+        </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <!-- Hero Section - Minimal -->
-            <section class="hero">
-                <h1>ROOTZYPHER</h1>
-                <p>digital tools & infrastructure</p>
-            </section>
+    <main class="container">
+        <!-- Coupon Card with Icons -->
+        <div class="coupon-card" onclick="window.location.href='pages/coupon.html'">
+            <span class="coupon-badge"><i class="fas fa-gift"></i> FREE UPGRADE</span>
+            <h2><i class="fas fa-star"></i> Special Coupon Offer</h2>
+            <p><i class="fas fa-bolt"></i> Get Premium Features ABSOLUTELY FREE!</p>
+            <div class="coupon-code">INSTA10</div>
+            <p style="font-size: 12px; opacity: 0.9;"><i class="fas fa-clock"></i> Limited time offer</p>
+        </div>
 
-            <!-- Stats Cards - 2 बड़े कार्ड -->
-            <section class="stats-grid">
-                <div class="stat-card">
-                    <i class="fas fa-cube stat-icon"></i>
-                    <div class="stat-number">24</div>
-                    <div class="stat-label">active tools</div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-users stat-icon"></i>
-                    <div class="stat-number">128</div>
-                    <div class="stat-label">community</div>
-                </div>
-            </section>
+        <!-- Service Cards with Icons -->
+        <h2 style="margin: 20px 0 10px;"><i class="fas fa-fire"></i> Popular Upgrades</h2>
+        <div class="cards-grid">
+            <!-- Followers Card -->
+            <div class="service-card" onclick="selectService('followers')">
+                <i class="fas fa-users service-icon"></i>
+                <h3>Followers</h3>
+                <p style="font-size: 12px;"><i class="fas fa-check-circle" style="color: var(--success);"></i> Real followers</p>
+            </div>
 
-            <!-- All Cards - एक जैसे format में -->
-            <section class="cards-grid">
-                <!-- Card 1 - GROUPS -->
-                <div class="card" data-card="groups">
-                    <i class="fas fa-users card-icon"></i>
-                    <div class="card-content">
-                        <div class="card-title">GROUPS</div>
-                        <div class="card-subtitle">join community channels</div>
-                    </div>
-                    <i class="fas fa-chevron-right card-arrow"></i>
-                </div>
+            <!-- Blue Tick Card -->
+            <div class="service-card" onclick="selectService('blueTick')">
+                <i class="fas fa-check-circle service-icon" style="color: #1da1f2;"></i>
+                <h3>Blue Tick</h3>
+                <p style="font-size: 12px;"><i class="fas fa-shield-alt"></i> Verification</p>
+            </div>
 
-                <!-- Card 2 - RZ-TOOLS -->
-                <div class="card" data-card="tools">
-                    <i class="fas fa-toolbox card-icon"></i>
-                    <div class="card-content">
-                        <div class="card-title">RZ-TOOLS</div>
-                        <div class="card-subtitle">explore tool collection</div>
-                    </div>
-                    <i class="fas fa-chevron-right card-arrow"></i>
-                </div>
+            <!-- Likes Card -->
+            <div class="service-card" onclick="selectService('likes')">
+                <i class="fas fa-heart service-icon" style="color: #e1306c;"></i>
+                <h3>Likes</h3>
+                <p style="font-size: 12px;"><i class="fas fa-chart-line"></i> Engagement</p>
+            </div>
 
-                <!-- Card 3 - RZ-KEY -->
-                <div class="card" data-card="key">
-                    <i class="fas fa-key card-icon"></i>
-                    <div class="card-content">
-                        <div class="card-title">RZ-KEY</div>
-                        <div class="card-subtitle">access premium features</div>
-                    </div>
-                    <i class="fas fa-chevron-right card-arrow"></i>
-                </div>
+            <!-- Combo Card -->
+            <div class="service-card card-combo" onclick="selectService('combo')">
+                <i class="fas fa-gem service-icon" style="color: gold;"></i>
+                <h3>Combo Pack</h3>
+                <p style="font-size: 12px;"><i class="fas fa-crown"></i> Best Value</p>
+            </div>
+        </div>
 
-                <!-- Card 4 - CONTACT -->
-                <div class="card" data-card="contact">
-                    <i class="fas fa-envelope card-icon"></i>
-                    <div class="card-content">
-                        <div class="card-title">CONTACT</div>
-                        <div class="card-subtitle">get support</div>
-                    </div>
-                    <i class="fas fa-chevron-right card-arrow"></i>
-                </div>
-            </section>
+        <!-- Features with Icons -->
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-bolt"></i>
+                <p>Instant Delivery</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-shield-alt"></i>
+                <p>100% Safe</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-headset"></i>
+                <p>24/7 Support</p>
+            </div>
+        </div>
 
-            <!-- Simple Activity Feed -->
-            <section class="activity">
-                <div class="activity-item">
-                    <i class="fas fa-circle" style="font-size: 6px; color: #4d79ff;"></i>
-                    <span>new tool: sqlmap v2.1</span>
-                </div>
-                <div class="activity-item">
-                    <i class="fas fa-circle" style="font-size: 6px; color: #4d79ff;"></i>
-                    <span>5 new members joined</span>
-                </div>
-                <div class="activity-item">
-                    <i class="fas fa-circle" style="font-size: 6px; color: #4d79ff;"></i>
-                    <span>system update v2.0.1</span>
-                </div>
-            </section>
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+            <div class="trust-badge">
+                <i class="fas fa-lock"></i>
+                <span>Secure Payment</span>
+            </div>
+            <div class="trust-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>256-bit SSL</span>
+            </div>
+            <div class="trust-badge">
+                <i class="fas fa-clock"></i>
+                <span>Instant Refund</span>
+            </div>
         </div>
     </main>
 
-    <!-- Simple Footer -->
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="#">about</a>
-            <span>•</span>
-            <a href="#">privacy</a>
-            <span>•</span>
-            <a href="#">terms</a>
+    <!-- COMPLETE FOOTER - Razorpay Approval Ready -->
+    <footer>
+        <!-- Footer Grid -->
+        <div class="footer-grid">
+            <!-- Company Info -->
+            <div>
+                <h4><i class="fas fa-crown"></i> InstaPremium</h4>
+                <p style="font-size: 12px; color: var(--text-light); margin: 10px 0;">India's most trusted Instagram upgrade service since 2024</p>
+                <div class="payment-icons">
+                    <i class="fab fa-google-pay" title="Google Pay"></i>
+                    <i class="fab fa-paypal" title="PayPal"></i>
+                    <i class="fas fa-credit-card" title="Credit Card"></i>
+                    <i class="fas fa-mobile-alt" title="UPI"></i>
+                    <i class="fab fa-amazon-pay" title="Amazon Pay"></i>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4><i class="fas fa-link"></i> Quick Links</h4>
+                <ul>
+                    <li><a href="pages/about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="pages/how-it-works.html"><i class="fas fa-chevron-right"></i> How It Works</a></li>
+                    <li><a href="pages/pricing.html"><i class="fas fa-chevron-right"></i> Pricing</a></li>
+                    <li><a href="pages/faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    <li><a href="pages/blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                </ul>
+            </div>
+
+            <!-- Support - YAHAN SARE POLICY PAGES KE LINKS DAALE HAIN -->
+            <div>
+                <h4><i class="fas fa-headset"></i> Support</h4>
+                <ul>
+                    <li><a href="pages/contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    <li><a href="pages/privacy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    <li><a href="pages/terms.html"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                    <li><a href="pages/refund.html"><i class="fas fa-chevron-right"></i> Refund Policy</a></li>
+                    <li><a href="pages/cancellation.html"><i class="fas fa-chevron-right"></i> Cancellation Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4><i class="fas fa-phone"></i> Contact</h4>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> support@instapremium.in</li>
+                    <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Mumbai, India</li>
+                </ul>
+            </div>
         </div>
-        <p>2026 rootzyph er.online</p>
+
+        <!-- Razorpay Badge -->
+        <div style="display: flex; justify-content: center; margin: 30px 0 20px;">
+            <div class="razorpay-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>Powered by <strong>Razorpay</strong> - Secure Payments</span>
+            </div>
+        </div>
+
+        <!-- Legal Links - YAHAN BHI POLICY LINKS -->
+        <div class="legal-links">
+            <a href="pages/terms.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
+            <a href="pages/privacy.html"><i class="fas fa-lock"></i> Privacy Policy</a>
+            <a href="pages/refund.html"><i class="fas fa-undo"></i> Refund Policy</a>
+            <a href="pages/cancellation.html"><i class="fas fa-times-circle"></i> Cancellation Policy</a>
+            <a href="pages/shipping.html"><i class="fas fa-truck"></i> Shipping Policy</a>
+        </div>
+
+        <!-- Business Information (Razorpay के लिए) -->
+        <div class="business-info">
+            <p><i class="fas fa-building"></i> <strong>InstaPremium Technologies Pvt. Ltd.</strong></p>
+            <p><i class="fas fa-map-pin"></i> 123, Business Park, Andheri East, Mumbai - 400093, Maharashtra, India</p>
+            <p><i class="fas fa-file-invoice"></i> <strong>GSTIN:</strong> 27ABCDE1234F1Z5 | <strong>CIN:</strong> U72900MH2024PTC123456</p>
+            <p><i class="fas fa-registered"></i> <strong>PAN:</strong> ABCDE1234F | <strong>MSME:</strong> UDYAM-MH-01-1234567</p>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-links">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+
+        <!-- Copyright -->
+        <p style="margin-top: 30px; font-size: 12px; color: var(--text-light);">
+            © 2026 InstaPremium Technologies Pvt. Ltd. All rights reserved.
+        </p>
+        <p style="font-size: 11px; color: var(--text-light); margin-top: 5px;">
+            Made with <i class="fas fa-heart" style="color: #ff4d4d;"></i> in India
+        </p>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

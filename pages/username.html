@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Username - Instagram Premium</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Page Specific CSS -->
+    <link rel="stylesheet" href="username.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <i class="fas fa-arrow-left" onclick="history.back()" style="cursor: pointer; font-size: 20px;"></i>
+            <div class="insta-logo">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
+
+    <main class="username-container">
+        <!-- Service Badge -->
+        <div class="service-badge" id="serviceBadge">Loading...</div>
+
+        <!-- Error Message -->
+        <div class="error-message" id="errorMessage">
+            <i class="fas fa-exclamation-circle"></i>
+            <span></span>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <i class="fas fa-check-circle"></i>
+            <span></span>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-section" id="inputSection">
+            <h3><i class="fas fa-user"></i> Enter Instagram Username</h3>
+            <div class="input-group">
+                <input type="text" id="username" placeholder="@username" value="rootzypher">
+                <button class="fetch-btn" onclick="fetchInstagramProfile()">
+                    <i class="fas fa-search"></i> Fetch
+                </button>
+            </div>
+        </div>
+
+        <!-- Post/Reel Link Section (Only for Likes) -->
+        <div class="input-section" id="linkSection" style="display: none;">
+            <h3><i class="fas fa-link"></i> Enter Post/Reel Link</h3>
+            <div class="input-group">
+                <input type="text" id="postLink" placeholder="https://www.instagram.com/p/...">
+                <button class="fetch-btn" onclick="validateLink()">
+                    <i class="fas fa-check"></i> Validate
+                </button>
+            </div>
+            <p style="font-size: 11px; color: var(--text-light); margin-top: 5px;">
+                <i class="fas fa-info-circle"></i> Paste the link of the post/reel you want to boost
+            </p>
+        </div>
+
+        <!-- Loader -->
+        <div class="loader" id="loader">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Fetching profile data...</p>
+        </div>
+
+        <!-- Preview Card -->
+        <div class="preview-card" id="previewCard" style="display: none;">
+            <h3><i class="fas fa-bolt"></i> Upgrade Preview</h3>
+            
+            <!-- API Success Mode - Comparison Cards -->
+            <div class="comparison-grid" id="apiSuccessMode" style="display: none;">
+                <!-- Current Profile Card -->
+                <div class="comparison-card current">
+                    <span class="card-badge">CURRENT</span>
+                    <div class="card-header">
+                        <div class="card-avatar" id="currentAvatar">
+                            <img src="" alt="">
+                        </div>
+                        <div class="card-username" id="currentUsername">@username</div>
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <span class="card-stat-value" id="currentFollowers">0</span>
+                            <span class="card-stat-label">followers</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value" id="currentFollowing">0</span>
+                            <span class="card-stat-label">following</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value" id="currentPosts">0</span>
+                            <span class="card-stat-label">posts</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- After Upgrade Card -->
+                <div class="comparison-card upgraded" id="upgradedCard">
+                    <span class="card-badge">AFTER</span>
+                    <div class="card-header">
+                        <div class="card-avatar" id="upgradedAvatar">
+                            <img src="" alt="">
+                        </div>
+                        <div class="card-username" id="upgradedUsername">
+                            @username 
+                            <i class="fas fa-check-circle verified-badge" id="blueTickIcon" style="display: none;"></i>
+                        </div>
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <span class="card-stat-value" id="upgradedFollowers">0</span>
+                            <span class="card-stat-label">followers <span class="plus-badge" id="followersPlus">+0</span></span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value" id="upgradedFollowing">0</span>
+                            <span class="card-stat-label">following</span>
+                        </div>
+                        <div class="card-stat">
+                            <span class="card-stat-value" id="upgradedPosts">0</span>
+                            <span class="card-stat-label">posts</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Features based on service -->
+                    <div class="upgrade-features" id="upgradeFeatures"></div>
+                </div>
+            </div>
+
+            <!-- API Fail Mode - Single Service Card -->
+            <div class="service-mode-card" id="apiFailMode" style="display: none;">
+                <div class="service-card-large">
+                    <div class="service-icon-large" id="failServiceIcon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2 id="failServiceName">Followers Boost</h2>
+                    <p id="failServiceDescription" style="color: var(--text-light); margin: 5px 0;">Get real followers instantly</p>
+                    
+                    <div class="service-details">
+                        <div class="detail-row">
+                            <span>Username:</span>
+                            <strong id="failUsername">@rootzypher</strong>
+                        </div>
+                        <div class="detail-row" id="failLinkRow" style="display: none;">
+                            <span>Post Link:</span>
+                            <strong id="failPostLink">link</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Service:</span>
+                            <strong id="failService">1000 Followers</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Price:</span>
+                            <strong class="price" id="failPrice">₹490</strong>
+                        </div>
+                    </div>
+
+                    <div class="badge-container" id="badgeContainer">
+                        <span class="badge" id="failBadge1">⚡ Instant</span>
+                        <span class="badge" id="failBadge2">✅ Real</span>
+                        <span class="badge" id="failBadge3">🔒 Safe</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 15px 0 0; text-align: center;">
+                <p><strong>Total:</strong> <span class="preview-price" id="previewPrice"></span></p>
+            </div>
+        </div>
+
+        <!-- Amount Section (for followers/likes) -->
+        <div class="amount-section" id="amountSection">
+            <label id="amountLabel">How many followers? (100-10000)</label>
+            <input type="number" id="amount" class="amount-input" value="1000" min="100" max="10000">
+            <div class="preset-buttons">
+                <span class="preset-btn" onclick="setAmount(500)">500</span>
+                <span class="preset-btn" onclick="setAmount(1000)">1K</span>
+                <span class="preset-btn" onclick="setAmount(2000)">2K</span>
+                <span class="preset-btn" onclick="setAmount(5000)">5K</span>
+                <span class="preset-btn" onclick="setAmount(10000)">10K</span>
+            </div>
+        </div>
+
+        <!-- Duration Section (for blue tick) -->
+        <div class="amount-section" id="durationSection" style="display: none;">
+            <label>Select Duration</label>
+            <div class="duration-grid">
+                <div class="duration-btn" onclick="selectDuration(1, 199)">1 Month <span class="price">₹199</span></div>
+                <div class="duration-btn" onclick="selectDuration(3, 499)">3 Months <span class="price">₹499</span></div>
+                <div class="duration-btn" onclick="selectDuration(6, 899)">6 Months <span class="price">₹899</span></div>
+                <div class="duration-btn" onclick="selectDuration(12, 1599)">12 Months <span class="price">₹1599</span></div>
+            </div>
+        </div>
+
+        <!-- Continue Button -->
+        <button class="continue-btn" onclick="continueToPayment()" id="continueBtn" disabled>
+            Continue <i class="fas fa-arrow-right"></i>
+        </button>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../config.js"></script>
+    <script src="username.js"></script>
+</body>
+</html>
