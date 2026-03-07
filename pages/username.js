@@ -406,6 +406,22 @@ document.getElementById('amount')?.addEventListener('input', function() {
     }
 });
 
+function loadSavedTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme) {
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';
+        }
+    } else {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';
+        }
+    }
+}
+
 // Make functions global
 window.fetchInstagramProfile = fetchInstagramProfile;
 window.validateLink = validateLink;

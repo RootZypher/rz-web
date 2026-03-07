@@ -424,3 +424,23 @@ footer {
         align-items: center;
     }
 }
+/* ===== System Theme Detection ===== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #121212;
+        --card-bg: #1e1e1e;
+        --text: #ffffff;
+        --text-light: #b0b0b0;
+        --border: #333333;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg: #fafafa;
+        --card-bg: #ffffff;
+        --text: #262626;
+        --text-light: #8e8e8e;
+        --border: #dbdbdb;
+    }
+}

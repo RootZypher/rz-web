@@ -75,3 +75,35 @@ function showNotification(message, type = 'success') {
 // Make functions global
 window.selectService = selectService;
 window.showNotification = showNotification;
+// ===== Auto Detect System Theme =====
+function detectSystemTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme) {
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';
+        }
+    } else {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';
+        }
+    }
+}
+
+// System theme change listener
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+    if (!localStorage.getItem('theme')) {
+        if (event.matches) {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.getElementById('themeToggle').querySelector('i').className = 'fas fa-moon';
+        }
+    }
+});
+
+// Page load pe detect karo
+document.addEventListener('DOMContentLoaded', detectSystemTheme);

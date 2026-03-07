@@ -227,3 +227,16 @@ window.sendUPIRequest = sendUPIRequest;
 window.cancelPayment = cancelPayment;
 window.retryPayment = retryPayment;
 window.goBack = goBack;
+function loadSavedTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme) {
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    } else {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-mode');
+        }
+    }
+}
